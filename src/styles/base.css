@@ -1,0 +1,48 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 60px;
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+main {
+    flex: 2;
+}
+
+section.hero {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    background: url('../media/trees.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 46%;
+    height: 240px;
+    position: relative;
+    z-index: 1;
+}
+
+h2 {
+    color: white;
+    z-index: 100;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
