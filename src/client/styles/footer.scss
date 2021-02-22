@@ -1,0 +1,12 @@
+footer {
+    background: hsl(0, 97%, 13%);
+    color: hsl(212, 33%, 89%);
+    height: 96px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    margin-top: 96px;
+    & p {
+        margin-bottom: 0;
+    }
+}
