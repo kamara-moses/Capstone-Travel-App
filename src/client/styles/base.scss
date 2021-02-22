@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,500&display=swap");
 
 * {
     margin: 0;
@@ -31,7 +31,7 @@ section.hero {
     display: grid;
     align-content: center;
     justify-content: center;
-    background: url('../media/trees.jpg');
+    background: url("../media/trees.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center 46%;
