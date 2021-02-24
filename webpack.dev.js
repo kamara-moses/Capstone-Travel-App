@@ -7,6 +7,20 @@ module.exports = {
     entry: "./src/client/index.js",
     mode: "development",
     devtool: "source-map",
+    stats: "verbose",
+    output: {
+        libraryTarget: "var",
+        library: "Client",
+      },
+      devServer: {
+        host: 'localhost',
+        port: 8080,
+        proxy: {
+          context: () => true,
+          target: 'http://localhost:8081',
+          secure: false
+        }
+    },
     module: {
         rules: [
             {

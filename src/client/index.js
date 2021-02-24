@@ -1,7 +1,10 @@
-import { clickResponse } from "./js/handleSubmit"
-import { handleDates } from "./js/handleDates"
+import { clickRespond } from './js/formHandler';
+
 
 import "./styles/base.scss"
 import "./styles/footer.scss"
 
-export { clickResponse, handleDates }
+
+export { 
+    clickRespond,
+};

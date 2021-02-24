@@ -1,36 +1,35 @@
-const dotenv = require("dotenv");
+/* Setup env for API keys */
+const dotenv = require('dotenv');
 dotenv.config();
-var path = require("path");
-const express = require("express");
-const bodyParser = require("body-parser");
 
+/* setup global variables and initialize express */
+const fetch = require("node-fetch");
+const express = require('express');
 const app = express();
 
-const cors = require("cors");
+/* Dependencies */
+const bodyParser = require('body-parser');
 
-app.use(cors());
-app.use(bodyParser.json());
+/* Middleware*/
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static("dist"));
+app.use(bodyParser.json());
+// Cors for cross origin allowance
+const cors = require('cors');
+app.use(cors());
 
-console.log(__dirname);
+// Initialize the main project folder
+app.use(express.static('dist'));
+
+// Spin up the server
+const port = 8081;
+const server = app.listen(port, listening);
 
 app.get('/', function(req, res) {
     res.sendFile('dist/index.html');
 })
 
-app.listen(8081, function() {
-    console.log("App listening on port 8081!")
-});
-
-app.post('/getPhoto', (req, res) => {
-    const url = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${req.body.city}&image_type=photo`;
-    const response = fetch(url)
-    try {
-        const data = response.json();
-        res.send(data);
-    } catch(error) {
-        console.log("Error", error);
-    }
-})
+// Callback to debug
+function listening() {
+    console.log(`Server running on localhost: ${port}`);
+}
 
