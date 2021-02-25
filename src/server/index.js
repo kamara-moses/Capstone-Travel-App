@@ -13,6 +13,7 @@ const app = express();
 /* Dependencies */
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const fetch = require("node-fetch")
 
 
 /* Middleware*/
@@ -40,20 +41,20 @@ app.get("/", function (req, res) {
     res.sendFile("dist/index.html")
 })
 
-
-// API
-const geoNameURL = "http://api.geonames.org/searchJSON?q"
-const userName = process.env.USERNAME
-console.log(`Your Username is ${process.env.USERNAME}`)
-
 // POSt Route
-app.post("/geoName", async function(req, res) {
-    projectData = req.body.city;
-    console.log(`You entered: ${projectData}`);
-    const geoURL = `${geoNameURL}=${city}&maxRows=1&username=${userName}`
-
-    const response = await fetch(geoURL)
-    const geoData = await response.json()
-    console.log(goeData)
-    res.send(geoData)
+app.post('/geoName', async(req, res) => {
+    const url = `http://api.geonames.org/searchJSON?q=${req.body.location}&maxRows=1&username=${process.env.USERNAME}`;
+    const response = await fetch(url);
+    try {
+        const data = await response.json();
+        console.log(data)
+        let coordinates = {
+            lat: data.geonames[0].lat,
+            long: data.geonames[0].lng
+        };
+        res.send(coordinates);
+    } catch (error) {
+        console.log("Error", error);
+    }
 })
+
