@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin'); // configure webpack to copy all img resources to the dist folder
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
