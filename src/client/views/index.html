@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12">
-                                <button id="submit" type ="submit">Search</button>
+                                <button id="submit" type="submit">Search</button>
                             </div>
                         </div>
                     </form>
@@ -57,14 +57,5 @@
                 </nav>
             </footer>
         </div>
-        <script>
-            // Check that service workers are supported
-            if ('serviceWorker' in navigator) {
-                // Use the window load event to keep the page load performant
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script>
     </body>
 </html>

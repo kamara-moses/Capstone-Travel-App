@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
     entry: './src/client/index.js',
@@ -13,11 +13,6 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
-    devServer: {
-        contentBase:  path.join(__dirname, 'dist'),
-        compress: true,
-        port: 8080
-      },
     module: {
         rules: [
             {
@@ -53,14 +48,6 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-        }),
-
-        // ref: https://www.npmjs.com/package/copy-webpack-plugin
-        new CopyPlugin({
-            patterns: [
-                // copy images and make a img folder in dist for the reference
-              { from: './src/client/media', to: './media' }
-            ]
         })
     ]
 }

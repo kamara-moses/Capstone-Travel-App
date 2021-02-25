@@ -1,14 +1,15 @@
 // js files
-import { handleSubmit } from './js/formHandler'
-import { updateUI } from './js/updateUI'
+import { clickRespond } from "./js/app"
+
 
 // sass files
-import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/footer.scss'
-import './styles/header.scss'
+import "./styles/resets.scss"
+import "./styles/base.scss"
+import "./styles/footer.scss"
+import "./styles/header.scss"
 
-document.getElementById('submit').addEventListener('click', handleSubmit);
+// Find the Generate button and add the listener
+const goButton = document.getElementById("submit");
+goButton.addEventListener("click", clickRespond);
 
-export { handleSubmit }
-export { updateUI }
+export { clickRespond }
