@@ -132,9 +132,10 @@ input:focus {
 .card {
     background: white;
     display: grid;
+    width: 80%;
+    margin: 0 auto;
     grid-template:
-        'card-image card-body' auto
-        'card-image card-footer' 40px / 2fr 3fr;
+        "card-image card-body" auto;
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 1px 3px hsla(0%, 0%, 0%, 0.2);
