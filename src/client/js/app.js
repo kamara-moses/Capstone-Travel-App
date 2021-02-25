@@ -4,12 +4,11 @@ function clickRespond() {
 
     // Read values of city
     const city = document.getElementById("city").value;
-
+    console.log(city)
 
     if (city === "") {
         alert("Please enter a city name")
     }
-
     console.log("::: Form Submitted :::")
 }
 
