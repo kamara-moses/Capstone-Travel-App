@@ -1,5 +1,5 @@
 // js files
-import { clickRespond } from "./js/app"
+import { clickRespond, postData } from "./js/app"
 import { handleDates } from "./js/handleDates"
 
 
@@ -13,4 +13,4 @@ import "./styles/header.scss"
 const goButton = document.getElementById("submit");
 goButton.addEventListener("click", clickRespond);
 
-export { clickRespond, handleDates }
+export { clickRespond, postData, handleDates }
