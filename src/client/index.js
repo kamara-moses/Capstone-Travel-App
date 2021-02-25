@@ -2,11 +2,6 @@
 import { handleSubmit } from './js/formHandler'
 import { updateUI } from './js/updateUI'
 
-// console.log(checkForURL);
-
-// alert("I EXIST")
-// console.log("CHANGE!!");
-
 // sass files
 import './styles/resets.scss'
 import './styles/base.scss'
