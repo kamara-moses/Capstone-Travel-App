@@ -1,7 +1,6 @@
 // Main function of the program
 // Grabs the user's input, then forms URL, calls API, POSTS and updates UI
 async function clickRespond() {
-
     // Read values of city
     const city = document.getElementById("city").value;
 
@@ -13,7 +12,16 @@ async function clickRespond() {
     // Get data from WeatherBit
     const weather = await postData('/weatherBit', { lat: location.lat, long: location.long });
 
+    // Get forecast for the trip
+    let forecast = 0;
 
+
+    const getData = {
+        city: weather.city_name,
+        high_temp: weather.data[forecast].high_temp,
+        low_temp: weather.data[forecast].low_temp,
+        forecast: weather.data[forecast].weather.description
+    }
 }
 
 
