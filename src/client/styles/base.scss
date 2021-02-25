@@ -55,14 +55,6 @@ section.search {
     padding: 0 30px;
 }
 
-input:focus ~ label, input:valid ~ label {
-    font-size: 0.75em;
-    color: #999;
-    top: -5px;
-    -webkit-transition: all 0.225s ease;
-    transition: all 0.225s ease;
-}
-
 .styled-input {
     float: left;
     width: 293px;
@@ -78,14 +70,7 @@ input:focus ~ label, input:valid ~ label {
 }
 
 .styled-input label {
-    color: #999;
-    padding: 1.3rem 30px 1rem 30px;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    -webkit-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-    pointer-events: none;
+    color: rgb(0, 0, 0);
 }
 
 .styled-input.wide { 
@@ -99,21 +84,13 @@ input {
     width: 100%;
     font-size: 1rem;
     background-color: hsl(210, 36%, 96%);
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 4px;
 }
 
 input:focus { 
     outline: 0;
 }
-
-input:focus ~ span {
-    width: 100%;
-    -webkit-transition: all 0.075s ease;
-    transition: all 0.075s ease;
-}
-
-
 
 .input-container {
     background-color: white;
@@ -131,7 +108,7 @@ input:focus ~ span {
     width: 100%;
     text-align: center;
     padding: 7px 35px;
-    border-radius: 60px;
+    border-radius: 4px;
     display: inline-block;
     background-color: hsl(0, 61%, 31%);
     color: white;

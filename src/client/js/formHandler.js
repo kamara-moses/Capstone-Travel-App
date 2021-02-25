@@ -1,5 +1,5 @@
 // Find the Generate button and add the listener
-const goButton = document.getElementById("search");
+const goButton = document.getElementById("submit-btn");
 goButton.addEventListener("click", clickRespond);
 
 // Main function of the program
