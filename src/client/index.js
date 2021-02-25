@@ -1,9 +1,19 @@
-import { handleSubmit} from './js/formHandler';
-import { handleDate } from "./js/handleDates"
-import { updateUI } from "./js/updateUI"
+// js files
+import { handleSubmit } from './js/formHandler'
+import { updateUI } from './js/updateUI'
 
-import "./styles/base.scss"
-import "./styles/footer.scss"
+// console.log(checkForURL);
 
+// alert("I EXIST")
+// console.log("CHANGE!!");
 
-export { handleSubmit, handleDate, updateUI };
+// sass files
+import './styles/resets.scss'
+import './styles/base.scss'
+import './styles/footer.scss'
+import './styles/header.scss'
+
+document.getElementById('submit').addEventListener('click', handleSubmit);
+
+export { handleSubmit }
+export { updateUI }

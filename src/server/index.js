@@ -27,23 +27,21 @@ app.get('/', function (req, res) {
 
 /** POST Router */
 
-// geonames (without JSON in URL, data will be sent as XML)
+// Geonames
 const geoBaseURL = 'http://api.geonames.org/searchJSON?q'
 const userName = process.env.USERNAME
 console.log(`Your username for geonames is ${process.env.USERNAME}`);
 
 // to receive the POST sent from the client
 app.post('/city', async function(req, res) {
-    city = encodeURI(req.body.city); // sent in the body from client side as body: JSON.stringify({city: cityName})
+    city = encodeURI(req.body.city); 
     console.log(`Trip destination: ${req.body.city}`);
 
-    const fetchGeo = await fetch (`${geoBaseURL}=${city}&maxRows=1&username=${userName}`) // fetch data from API's endpoint
-    const geoInJson = await fetchGeo.json() // transform it into json format
-    res.send(geoInJson) // and send it to the client, ❓ can i also use res.json as same purpose as res.send?
-    // console.log(geoInJson) // print out the fetched data on console
-})
+    const fetchGeo = await fetch (`${geoBaseURL}=${city}&maxRows=1&username=${userName}`)
+    const geoInJson = await fetchGeo.json()
+});
 
-// weatherbit
+// Weatherbit
 const weatherBaseURL = 'https://api.weatherbit.io/v2.0/forecast/daily?'
 const wKey = process.env.WKEY
 console.log(`Your API key for weatherbit is ${process.env.WKEY}`)
@@ -57,10 +55,9 @@ app.post('/weather', async function(req, res) {
     const fetchWeather = await fetch (`${weatherBaseURL}&lat=${lat}&lon=${lon}&days=3&key=${wKey}`)
     const weatherInJson = await fetchWeather.json()
     res.send(weatherInJson)
-    // console.log(weatherInJson)
-})
+});
 
-//pixabay
+// Pixabay
 const pixabayBaseURL = 'https://pixabay.com/api/?'
 const pKey = process.env.PKEY
 console.log(`Your API key for pixabay is ${process.env.PKEY}`)
@@ -93,8 +90,7 @@ app.post('/pic', async function(req, res) {
     } catch(error) {
         console.log(error)
     }
-    // console.log(picInJson)
-})
+});
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
