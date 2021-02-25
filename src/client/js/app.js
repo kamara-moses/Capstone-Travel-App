@@ -7,8 +7,12 @@ async function clickRespond() {
 
     console.log("::: Form Submitted :::")
 
-    /* Get data from Geonames */
-    const location = await postData('/geoName', { location: city})
+    // get data from GeoNames
+    const location = await postData('/geoName', { destination: city})
+
+    // Get data from WeatherBit
+    const weather = await postData('/weatherBit', { lat: location.lat, long: location.long });
+
 
 }
 

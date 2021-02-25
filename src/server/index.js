@@ -58,3 +58,15 @@ app.post('/geoName', async(req, res) => {
     }
 })
 
+app.post('/weatherBit', async(req, res) => {
+    const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.body.lat}&lon=${req.body.long}&key=${process.env.WEATHERKEY}`;
+    const response = await fetch(url)
+    try {
+        const data = await response.json();
+        console.log(data)
+        res.send(data);
+    } catch(error) {
+        console.log("Error", error);
+    }
+})
+
