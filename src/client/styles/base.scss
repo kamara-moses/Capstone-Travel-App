@@ -120,6 +120,43 @@ input:focus {
     transition: all 300ms ease;
 }
 
+.hide {
+    display: none;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: x-large;
+    text-align: center;
+}
+
+#entryHolder {
+    font-size: large;
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px black;
+}
+
+.icon {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+#date,
+#temp {
+    margin-bottom: 10px;
+}
+
+
 
 @media (max-width: 768px) {
     .submit-btn {

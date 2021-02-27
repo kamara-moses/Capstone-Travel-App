@@ -19,6 +19,7 @@
                     <h2>Your Next Adventure Awaits You!</h2>
                   </section>
                 <section id="entry">
+                    <h2 id="error" class="hide">Bad data entered. Please try again.</h2>
                     <form>
                         <div class="row input-container">
                             <div class="col-xs-12">
@@ -30,13 +31,13 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="styled-input">
                                     <label for="start">Depart</label>
-                                    <input type="date" id="start" name="start" required>
+                                    <input type="date" id="depart" name="depart" required>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="styled-input" style="float: right;">
                                     <label for="end">Return</label>
-                                    <input type="date" id="end" name="end" required>
+                                    <input type="date" id="return" name="return" required>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -45,6 +46,15 @@
                         </div>
                     </form>
                 </section>
+                <div id="journal" class="holder entry hide">
+                    <div class="title">Most Recent Entry</div>
+                    <div id="entryHolder">
+                      <div id="icon"></div>
+                      <div id="date"></div>
+                      <div id="temp"></div>
+                      <div id="content"></div>
+                    </div>
+                  </div>
             </main>
 
             <footer>
