@@ -2,21 +2,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description:
-The app allows users to create trip plans. When a user submit a city name with trip date, the web page then dispalys destination with its photo and 3-day weather forecast returned from external APIs.
+A weather journal application that accepts users input and display weather information from the openweathermap through making API calls for the data.
 
 ## Technologies:
-* HTML
-* CSS
-* JavaScript
-* Node
-* Express
-* Webpack
-* [GeoNames API](http://www.geonames.org/)
-* [OpenWeather](https://openweathermap.org/)
-* [pixabay](https://pixabay.com/api/docs/#)
-* Jest
-* supertest
-* Workbox
+- Node.js
+- Express
+- Cors
+- Body-Parser
+- API
+- JavaScript
+
 
 ## Table of Contents
 * [Description](#description)
@@ -37,34 +32,25 @@ Before installing this application on your local computer, ensure that you have 
     1. Clone the Git repository
         $ git clone <repo>
     2. Navigate to the directory and install the dependencies
-        $ npm i
-    3. Run webpack.prod.js by typing run build-prod to build a dist folder for production.
-    4. To run webpack-dev-server, type npm run build-dev in terminal. 
-    5. Once the dev-server is running type npm run start to start the server in the terminal.
+        $ npm init to create package.json package
+        $ npm install express cors body-parser
+    3.  To run it locally, type node server in terminal
 
 ## Usage
-Once all dependencies have been installed - run the webpack-dev-server to launch the application. The dev server port number is 8080 and the server side port is 8081.
+Once all dependencies have been installed - run node server.js to launch the application. Go to localhost + the port number.
 
-Sign up for API keys at:
-* [GeoNames API](http://www.geonames.org/)
-* [OpenWeather](https://openweathermap.org/)
-* [pixabay](https://pixabay.com/api/docs/#)
+## Contributors
+This application is open to anyone who wants to contribute or enhance the application. If you would like to contribute please reach out to me on Github or email.
 
-Configure environment variables using dotenv package
-	1. Install the dotenv package
-	```
-	npm install dotenv
-	```
-	2. Create a new `.env` file in the root of your project
-	3. Fill the `.env` file with your API keys like this:
-	```
-	API_KEY=**************************
-	username=**************************
-	apikey=**************************
-	```
+## Test
+There are no automatic test designed for this application. I ran manual test to make sure everything was working the way it should.
+    - input information into the zip or city search field and feelings
+    - API call will get the data from the openweathermap and display it on the page
+
+If you would like to design an automatic test for this application feel free to reach me on GitHub or Email
 
 ## Challenges
-This project aims to build a web app using all of the skills I have learned in Nanodegree program.
+The videos in the class were very informational and easy to follow. There were no challenges in this application build
 
 ## Questions
 If you have questions about this repository? Please contact me at [kamara.moses@yahoo.com](mailto:kamara.moses@yahoo.com). View more of my work in GitHub at [kamara-moses](https://github.com/kamara-moses).

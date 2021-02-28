@@ -1,26 +1,31 @@
-const WEATHERKEY = `&appid=7439220f89767ecc92468da6aaab2380`
-// const PIXAKEY= `19853981-85155ca595da994be43f034e6`
+/* Global Variables */
 
+// The URL root if user searches by zip code
+const API_ROOT_ZIP = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 
 // The URL root if user searches by city
 const API_ROOT_CITY = 'http://api.openweathermap.org/data/2.5/weather?q=';
 
-// const API_ROOT_PIX = 'https://pixabay.com/api/?key=';
-
-// const API_ROOT_PARAMS = '&q';
-
-// const API_ROOT_IMAGE = '&image_type=photo';
-
 // The URL for units parameter
 const API_UNITS = '&units=';
 
+// The URL for api key parameter
+const API_KEY = `&appid=${config.API_KEY}`;
+
+// Find the Generate button and add the listener
+const goButton = document.getElementById('generate');
+goButton.addEventListener('click', clickRespond);
+
 // Main function of the program
 // Grabs the user's input, then forms URL, calls API, POSTS and updates UI
-async function clickRespond() {
-       // Grab user's input
-       const cityInput = document.getElementById('city');
-       const unitsInput = document.querySelector('input[name="units"]:checked')
-       let units; 
+function clickRespond() {
+
+   // Grab user's input
+    const zipInput = document.getElementById('zip');
+    const cityInput = document.getElementById('city');
+    const unitsInput = document.querySelector('input[name="units"]:checked')
+    const feelingsInput = document.getElementById('feelings');
+    let units; 
     let degreeSystem;
     if (unitsInput) {
         units = unitsInput.value;
@@ -33,23 +38,22 @@ async function clickRespond() {
         degreeSystem = "F";
     }
 
-       // Read values of zip and city
-       const city = cityInput.value;
-   
-       // Form URL based on zip or city search
-       // (zip takes precendence if both were entered)
-       let url;
-       if (city) {
-           url =  API_ROOT_CITY + city + API_UNITS + units + WEATHERKEY
-        //    url = API_ROOT_PIX + PIXAKEY + API_ROOT_PARAMS + city + API_ROOT_IMAGE
-           console.log(url)
-       }
-   
-       // Call the API
-       getWeather(url)
-   
-           // Prepares data for POST, calls the POST
-           // Prepares data for POST, calls the POST
+    // Read values of zip and city
+    const zip = zipInput.value;
+    const city = cityInput.value;
+
+    // Form URL based on zip or city search
+    // (zip takes precendence if both were entered)
+    let url;
+    if (zip) {
+        url = API_ROOT_ZIP + zip + API_UNITS + units + API_KEY;
+    } else if (city) {
+        url = API_ROOT_CITY + city + API_UNITS + units + API_KEY;
+    }
+
+    // Call the API
+    getWeather(url)
+
         // Prepares data for POST, calls the POST
         .then(function (weatherData) {
             console.log(weatherData)
@@ -59,7 +63,8 @@ async function clickRespond() {
                 const icon = weatherData.weather[0].icon;
                 const date = dateTime();
                 const temperature = weatherData.main.temp.toFixed(0);
-                postJournal('/add', { icon, date, temperature });
+                const feelings = feelingsInput.value;
+                postJournal('/add', { icon, date, temperature, feelings });
 
                 // Calls to update the site with latest entry
                 updateUI(degreeSystem);
@@ -116,6 +121,3 @@ function dateTime() {
     const date = `${d.getMonth() + 1}.${d.getDate()}.${d.getFullYear()} at time ${d.getHours()}:${minutes}`;
     return date;
 }
-
-
-export { clickRespond } 

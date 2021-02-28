@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Journal</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="holder headline">
+      <h1>SoulWeather Journal App</h1>
+    </div>
+    <h2 id="error" class="hide">Bad data entered. Please try again.</h2>
+    <div class="holder zip city">
+      <label for="zip">Enter zipcode here</label>
+      <input type="text" id="zip" maxlength="5" size="13" placeholder="enter zip code here">
+      <label for="city"><b>or</b> search by city</label>
+      <input type="text" id="city" size="13" placeholder="enter city here">
+    </div>
+    <div class="holder feel">
+      <label for="feelings">How are you feeling today?</label>
+      <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
+    </div>
+    <button id="generate" type="submit">Generate</button>
+    <div id="journal" class="holder entry hide">
+      <div class="title">Most Recent Entry</div>
+      <div id="entryHolder">
+        <div id="icon"></div>
+        <div id="date"></div>
+        <div id="temp"></div>
+        <div id="content"></div>
+      </div>
+    </div>
+    <footer>
+      <h2>
+        &copy; 2020 Moses Kamara
+      </h2>
+    </footer>
+  </div>
+  <script src='./config.js' type='text/javascript'></script>
+  <script src="./app.js" type="text/javascript"></script>
+
+</body>
+
+</html>

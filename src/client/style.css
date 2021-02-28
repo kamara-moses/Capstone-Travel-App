@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    background-color: #f89f9f;
+    min-height: 100vh
+}
+
+.headline {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(252, 252, 252);
+    margin-bottom: 20px;
+    font-weight: 200;
+}
+
+.zip,
+.feel {
+    margin-bottom: 40px;
+}
+
+#zip {
+    margin-right: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+label,
+input,
+textarea {
+    vertical-align: middle;
+}
+
+input,
+.myInput {
+    padding: 10px;
+    font-size: large;
+}
+
+.units {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.unit-title {
+    margin-right: 10px;
+}
+
+.radio-label {
+    font-size: large;
+}
+
+#metric,
+#imperial {
+    margin-left: -5px;
+}
+
+#metric {
+    margin-right: 10px;
+}
+
+button {
+    font-size: large;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 40px;
+    background-color: #ffffff;
+    color: #f89f9f;
+    box-shadow: 2px 2px 4px black;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: x-large;
+    text-align: center;
+}
+
+#entryHolder {
+    font-size: large;
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px black;
+}
+
+.icon {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+#date,
+#temp {
+    margin-bottom: 10px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    /* background-color: rgb(248, 164, 164); */
+    color: #f89f9f;
+    margin-top: 110px;
+}
