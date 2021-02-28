@@ -2,9 +2,6 @@ const API_KEY = "&appid=7439220f89767ecc92468da6aaab2380"
 
 /* Global Variables */
 
-// The URL root if user searches by zip code
-const API_ROOT_ZIP = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-
 // The URL root if user searches by city
 const API_ROOT_CITY = 'http://api.openweathermap.org/data/2.5/weather?q=';
 
@@ -20,10 +17,8 @@ goButton.addEventListener('click', clickRespond);
 function clickRespond() {
 
    // Grab user's input
-    const zipInput = document.getElementById('zip');
     const cityInput = document.getElementById('city');
     const unitsInput = document.querySelector('input[name="units"]:checked')
-    const feelingsInput = document.getElementById('feelings');
     let units; 
     let degreeSystem;
     if (unitsInput) {
@@ -38,15 +33,12 @@ function clickRespond() {
     }
 
     // Read values of zip and city
-    const zip = zipInput.value;
     const city = cityInput.value;
 
     // Form URL based on zip or city search
     // (zip takes precendence if both were entered)
     let url;
-    if (zip) {
-        url = API_ROOT_ZIP + zip + API_UNITS + units + API_KEY;
-    } else if (city) {
+    if (city) {
         url = API_ROOT_CITY + city + API_UNITS + units + API_KEY;
     }
 
