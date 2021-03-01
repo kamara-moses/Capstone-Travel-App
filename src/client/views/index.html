@@ -64,13 +64,22 @@
           </div>
         </section>
       </main>
-      <footer>
-        <h2>
-          &copy; 2020 Moses Kamara
-        </h2>
-        <a href="https://linkedin.com/in/moses-kamara" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/kamara-moses" target="_blank"><i class="fab fa-github-square"></i></a>
-      </footer>
     </div>
+    <footer>
+        
+          Moses Kamara &copy; 2021 
+        
+        <!-- <a href="https://linkedin.com/in/moses-kamara" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/kamara-moses" target="_blank"><i class="fab fa-github-square"></i></a> -->
+      </footer>
+      <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
   </body>
 </html>
