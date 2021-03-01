@@ -1,6 +1,9 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
+
+// const path = require("path");
+
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 
@@ -13,7 +16,7 @@ const app = express();
 /* Dependencies */
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const fetch = require("node-fetch")
+
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
@@ -30,7 +33,7 @@ console.log(__dirname)
 app.use(express.static("dist"));
 
 app.get("/", function (req, res) {
-    res.sendFile("dist/index.html")
+    res.sendFile("dist")
 })
 
 // Setup Server
