@@ -2,12 +2,23 @@ const path = require("path")
 const webpack = require("webpack")
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const WorkboxPlugin = require('workbox-webpack-plugin');
+
 
 module.exports = {
     entry: "./src/client/index.js",
     mode: "development",
     stats: "verbose",
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8080,
+        proxy: {
+            '/getWeather': {
+                target: 'http://localhost:8001',
+                secure: false
+            }
+        }
+    },
     module: {
         rules: [
             {
@@ -42,6 +53,5 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new WorkboxPlugin.GenerateSW()
     ]
 }
