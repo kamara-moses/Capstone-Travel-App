@@ -1,10 +1,9 @@
 const dotenv = require("dotenv");
 dotenv.config();
-
-// const path = require("path");
+const fetch = require("node-fetch");
 
 // Setup empty JS object to act as endpoint for all routes
-let projectData = {};
+let projectdata = {};
 
 // Require Express to run server and routes
 const express = require("express");
@@ -34,46 +33,47 @@ app.get("/", function (req, res) {
 });
 
 // Setup Server
-const port = 8001;
+const port = 8081;
 const server = app.listen(port, listening);
 
 function listening() {
   console.log(`Server is running on port ${port}`);
 }
 
-  app.post('/getCity', async(req, res) => {
-    const url = `http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=${process.env.USERNAME}`;
-    const response = await fetch(url);
-    try {
-        const data = await response.json();
-        let coordinates = {
-            lat: data.geonames[0].lat,
-            lon: data.geonames[0].lng
-        };
-        res.send(coordinates);
-    } catch (error) {
-        console.log("Error", error);
-    }
-})
+app.post("/getWeather", function (req, res) {
+  const { date, city } = req.body;
+  // Call to the geonames API
+  const geoNames = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${process.env.USERNAME}`;
+  console.log(`${process.env.USERNAME}`)
+  fetch(geoNames)
+    .then((res) => res.json())
+    .then((json) => {
+      // getting latitude and longitude
+      const lat = json.geonames[0].lat;
+      const lng = json.geonames[0].lng;
+      console.log(geoNames)
+      console.log(lat)
+      console.log(lng)
 
-app.post('/getWeather', async(req, res) => {
-    const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.body.lat}&lon=${req.body.lon}&key=${process.env.WEATHERKEY}`;
-    const response = await fetch(url)
-    try {
-        const data = await response.json();
-        res.send(data);
-    } catch(error) {
-        console.log("Error", error);
-    }
-})
-
-app.post('/getPic', async(req, res) => {
-    const url = `https://pixabay.com/api/?key=${process.env.PIXAKEY}&q=${req.body.city}&image_type=photo`;
-    const response = await fetch(url)
-    try {
-        const data = await response.json();
-        res.send(data);
-    } catch(error) {
-        console.log("Error", error);
-    }
-})
+      // Call to the weatherbit API
+      const weatherBit = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${process.env.WEATHERKEY},${date}`;
+      console.log(`${process.env.WEATHERKEY}`)
+      fetch(weatherBit)
+        .then((res) => res.json())
+        .then((json) => {
+          const tempHigh = json.data[0].tempHigh;
+          const tempLow = json.data;
+            console.log(weatherBit) 
+          // Call to the pixabay API
+          const pixaBay = `https://pixabay.com/api/?key=${process.env.PIXAKEY}&q=${city}&image_type=photo`;
+          fetch(pixaBay)
+            .then((res) => res.json())
+            .then((json) => {
+              const img = json.hits[0].webformatURL;
+              const pixObj = { tempHigh: tempHigh, tempLow: tempLow, img: img };
+              res.send(pixObj);
+              console.log(pixObj)
+            });
+        });
+    });
+});
