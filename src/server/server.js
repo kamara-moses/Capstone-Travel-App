@@ -2,9 +2,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 const fetch = require("node-fetch");
 
-// Setup empty JS object to act as endpoint for all routes
-let projectdata = {};
-
 // Require Express to run server and routes
 const express = require("express");
 
@@ -41,7 +38,7 @@ function listening() {
 }
 
 app.post("/getWeather", function (req, res) {
-  const { date, city } = req.body;
+  const { city } = req.body;
   // Call to the geonames API
   const geoNames = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${process.env.USERNAME}`;
   console.log(`${process.env.USERNAME}`)
@@ -56,21 +53,24 @@ app.post("/getWeather", function (req, res) {
       console.log(lng)
 
       // Call to the weatherbit API
-      const weatherBit = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${process.env.WEATHERKEY},${date}`;
-      console.log(`${process.env.WEATHERKEY}`)
+      const weatherBit = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=${process.env.WEATHERKEY}`;
+      console.log(`${process.env.USERNAME}`)
       fetch(weatherBit)
         .then((res) => res.json())
-        .then((json) => {
-          const tempHigh = json.data[0].tempHigh;
-          const tempLow = json.data;
-            console.log(weatherBit) 
+        .then((json) => { 
+            console.log(json);
+            const description = json.data[0].weather.description;
+            const tempHigh = json.data[0].high_temp;
+            const tempLow = json.data[0].low_temp;
+            
           // Call to the pixabay API
           const pixaBay = `https://pixabay.com/api/?key=${process.env.PIXAKEY}&q=${city}&image_type=photo`;
           fetch(pixaBay)
             .then((res) => res.json())
             .then((json) => {
+                console.log(json)
               const img = json.hits[0].webformatURL;
-              const pixObj = { tempHigh: tempHigh, tempLow: tempLow, img: img };
+              const pixObj = { description: description, tempHigh: tempHigh, tempLow: tempLow, img: img };
               res.send(pixObj);
               console.log(pixObj)
             });
