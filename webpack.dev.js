@@ -14,7 +14,7 @@ module.exports = {
         port: 8080,
         proxy: {
             '/getWeather': {
-                target: 'http://localhost:8001',
+                target: 'http://localhost:8081',
                 secure: false
             }
         }

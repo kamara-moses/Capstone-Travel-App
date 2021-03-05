@@ -1,6 +1,4 @@
-// Find the Generate button and add the listener
-const goButton = document.getElementById("generate");
-goButton.addEventListener("click", clickRespond);
+
 
 // Main function of the program
 // Grabs the user"s input, then forms URL, calls API, POSTS and updates UI
@@ -20,45 +18,66 @@ function clickRespond() {
   let date = { countdown };
 
   if (city && startDate) {
-    const data = {
-      city: city,
-      date: countdown,
-    };
+      console.log("::: Form Submitted :::");
 
-    getWeather(data).then(async (res) => {
-        try {
-            const result = await res.json();
-            if (result) {
-              document.getElementById('trip-to').innerHTML = location;
-              document.getElementById('trip-on').innerHTML = date;
-              document.getElementById('day-info').innerHTML = `${daysAhead} ${daysAhead >= 1 ? 'days away!' : 'days behind!'}`;
-              document.getElementById('weather').innerHTML = result.summary || 'not provided';
-              document.getElementById('high').innerHTML = result.tempHigh || '-';
-              document.getElementById('low').innerHTML = result.tempLow || '-';
-              document.getElementById('trip-img').src = result.img || '-';
+      postData("http://localhost:8081/getWeather", { city, startDate }).then(function (
+        res
+      ) {
+        //Clear UI
+        const results = document.getElementById("results");
+        results.innerHTML = "";
+        results.style.display = "block";
   
-            }
-      } catch (error) {
-        alert("error occoured! try again.");
-      }
-    });
-  } else {
-    alert("please enter valid information");
-  }
-  console.log("::: Form Submitted :::")
+        let resultsHTML;
+        if (results) {
+          resultsHTML = `
+                    <div>
+                    <h1>Your trip to: ${res.city}</h1>
+                    <span><img src=${res.img}</span>
+                    <p><span>Weather: ${res.description}</span></p>
+                    <p><span>High TemP: ${res.tempHigh}%</span></p>
+                    <p><span>Low Temp: ${res.tempLow}</span></p>
+                    </div>`;
+        }
+        //add resultsHTML to DOM
+        results.insertAdjacentHTML("beforeend", resultsHTML);
+      });
+    } else {
+      alert("Please check the city input and dates!");
+    }
 }
 
-const getWeather = async (data) => {
-    return await fetch(`http://localhost:8081/getWeather`, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'same-origin',
+// const getWeather = async (data) => {
+//     return await fetch(`http://localhost:8081/getWeather`, {
+//       method: 'POST',
+//       mode: 'cors',
+//       credentials: 'same-origin',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(data),
+//     });
+//   }
+
+  const postData = async (city = "", data = {}) => {
+    console.log(data);
+    const response = await fetch(city, {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "cors",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
-  }
+    try {
+      const newData = await response.json();
+      console.log("Data received:", newData);
+      return newData;
+    } catch (error) {
+      console.log("error", error);
+    }
+};
 
-export { clickRespond, getWeather }
+export { clickRespond, postData}

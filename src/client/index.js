@@ -1,8 +1,11 @@
-import { clickRespond, getWeather } from "./js/app"
-
-
+import { clickRespond, postData } from "./js/app"
 
 import "./styles/main.scss"
 import "./styles/footer.scss"
+import "./styles/results.scss"
 
-export { clickRespond, getWeather }
+// Find the Generate button and add the listener
+const goButton = document.getElementById("generate");
+goButton.addEventListener("click", clickRespond);
+
+export { clickRespond, postData }
