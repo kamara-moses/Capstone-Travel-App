@@ -2,6 +2,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const fetch = require("node-fetch");
 
+let projectData = {};
+
 // Require Express to run server and routes
 const express = require("express");
 

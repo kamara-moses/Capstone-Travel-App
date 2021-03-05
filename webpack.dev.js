@@ -9,16 +9,12 @@ module.exports = {
     mode: "development",
     stats: "verbose",
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 8080,
         proxy: {
-            '/getWeather': {
-                target: 'http://localhost:8081',
-                secure: false
-            }
+          "/getWeather": {
+            target: "http://localhost:8081"
+          }
         }
-    },
+      },
     module: {
         rules: [
             {
