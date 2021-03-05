@@ -1,4 +1,4 @@
-import { clickRespond, postData } from "./js/app"
+import { clickRespond } from "./js/app"
 
 import "./styles/main.scss"
 import "./styles/footer.scss"
@@ -8,4 +8,4 @@ import "./styles/results.scss"
 const goButton = document.getElementById("generate");
 goButton.addEventListener("click", clickRespond);
 
-export { clickRespond, postData }
+export { clickRespond }

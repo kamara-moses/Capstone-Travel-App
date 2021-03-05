@@ -17,10 +17,8 @@ function clickRespond() {
 
   let date = { countdown };
 
-  if (city && startDate) {
-      console.log("::: Form Submitted :::");
-
-      postData("http://localhost:8081/getWeather", { city, startDate }).then(function (
+  if (city && date) {
+      postData("http://localhost:8081/getWeather", { city, date }).then(function (
         res
       ) {
         //Clear UI
@@ -47,19 +45,6 @@ function clickRespond() {
     }
 }
 
-// const getWeather = async (data) => {
-//     return await fetch(`http://localhost:8081/getWeather`, {
-//       method: 'POST',
-//       mode: 'cors',
-//       credentials: 'same-origin',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(data),
-//     });
-//   }
-
   const postData = async (city = "", data = {}) => {
     console.log(data);
     const response = await fetch(city, {
@@ -80,4 +65,4 @@ function clickRespond() {
     }
 };
 
-export { clickRespond, postData}
+export { clickRespond }
