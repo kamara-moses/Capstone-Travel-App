@@ -18,7 +18,7 @@ function clickRespond() {
   let date = { countdown };
 
   if (city && date) {
-      postData("http://localhost:8081/getWeather", { city, date }).then(function (
+      postData("http://localhost:8081/getWeather", { url: city, date }).then(function (
         res
       ) {
         //Clear UI
@@ -45,9 +45,9 @@ function clickRespond() {
     }
 }
 
-  const postData = async (city = "", data = {}) => {
+  const postData = async (url = "", data = {}) => {
     console.log(data);
-    const response = await fetch(city, {
+    const response = await fetch(url, {
       method: "POST",
       credentials: "same-origin",
       mode: "cors",
