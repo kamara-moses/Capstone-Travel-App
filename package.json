@@ -1,25 +1,33 @@
 {
-  "name": "soulweather",
+  "name": "soul-trip",
   "version": "1.0.0",
-  "description": "SoulWeather Journal App",
+  "description": "Soul Trip",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kamara-moses/SoulWeather.git"
+    "start": "nodemon src/server/server.js",
+    "build-dev": "webpack serve --config webpack.dev.js --open"
   },
   "author": "Moses Kamara",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kamara-moses/SoulWeather/issues"
-  },
-  "homepage": "https://github.com/kamara-moses/SoulWeather#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.1.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

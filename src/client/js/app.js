@@ -10,7 +10,7 @@ const API_ROOT_CITY = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const API_UNITS = '&units=';
 
 // The URL for api key parameter
-const API_KEY = `&appid=${config.API_KEY}`;
+const API_KEY = `&appid=7439220f89767ecc92468da6aaab2380`;
 
 // Find the Generate button and add the listener
 const goButton = document.getElementById('generate');
@@ -121,3 +121,5 @@ function dateTime() {
     const date = `${d.getMonth() + 1}.${d.getDate()}.${d.getFullYear()} at time ${d.getHours()}:${minutes}`;
     return date;
 }
+
+export { clickRespond }
