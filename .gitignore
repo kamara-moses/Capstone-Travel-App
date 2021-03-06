@@ -1,5 +1,9 @@
-node_modules
-package-lock.json
-.DS_Store
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# generate output
 dist
-.env
+
+# MacOs files
+./DS_Store
