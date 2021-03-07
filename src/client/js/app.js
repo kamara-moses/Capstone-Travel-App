@@ -71,11 +71,8 @@ function clickRespond() {
             const errorMessage = document.getElementById("error");
             if (geoNames.cod == "200") {
                 errorMessage.classList.add("hide");
-                const city = geoNames.geonames[0].city;
-                const countryName = geoNames.geonames[0].countryName;
-                const lat = geoNames.geonames[0].lat;
-                const lng = geoNames.geonames[0].lng;
-                postJournal("/add", { city, countryName, lat, lng });
+                const city = geoNames.geonames[0].name;
+                postJournal("/add", { city });
 
                 // Calls to update the site with latest entry
                 updateUI(degreeSystem);
@@ -171,10 +168,12 @@ async function postJournal(url, data) {
 async function updateUI(degreeSystem) {
     const response = await fetch("/retrieve");
     const latestEntry = await response.json();
-    document.getElementById("icon").innerHTML = `<img class="icon" src="http://openweathermap.org/img/wn/${latestEntry.icon}@2x.png" alt="Weather icon">`
+    document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}>`
+    document.getElementById("icon").innerHTML = `<img class="icon" ${latestEntry.image}>`
     document.getElementById("date").innerHTML = `Date: ${latestEntry.date}`;
-    document.getElementById("temp").innerHTML = `Temperature: ${latestEntry.temperature}\xB0${degreeSystem}`;
-    document.getElementById("content").innerHTML = `Feelings: ${latestEntry.feelings}`;
+    document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.description}\xB0${degreeSystem}`;
+    document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.highTemp}\xB0${degreeSystem}`;
+    document.getElementById("lowTemp").innerHTML = `Low Temp: ${latestEntry.lowTemp}\xB0${degreeSystem}`;
     document.getElementById("journal").classList.remove("hide");
 }
 
