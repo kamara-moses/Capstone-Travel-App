@@ -3,20 +3,32 @@
 // The URL root if user searches by city
 const API_ROOT_CITY = "http://api.geonames.org/searchJSON?q=";
 
-// PARAMS FOR Geonames
-const API_ROOT_PARAMS = "&maxRows=1&username="
+// Parameters for geonames
+const API_ROOT_PARAMS = "&maxRows=1"
 
-// The URL for api key parameter
-const API_KEY = `kamara.moses`;
+// API KEY for geonames
+const API_KEY = `&username=kamara.moses`;
 
 // WeatherBit URL
 const API_ROOT_BIT = "https://api.weatherbit.io/v2.0/forecast/daily?"
 
+// Parameters for weatherbit
 const API_BIT_PARAMS = "&city="
 
-const API_BIT_KEY = "&key="
+// API KEY for weatherbit
+const API_BIT_KEY = "&key=cda6df51d9a24b8c9d54b830f4eadb51"
 
-const BIT_KEY = "cda6df51d9a24b8c9d54b830f4eadb51"
+// PixaBay URL
+const API_ROOT_PIXA = "https://pixabay.com/api/?"
+
+// API KEY for pixabay
+const API_PIXA_KEY = "key=19853981-85155ca595da994be43f034e6"
+
+// Parameters for pixabay
+const API_PIXA_PARAMS = "&q="
+
+// Type of image from pixabay
+const API_PIXA_IMAGE = "&image_type=photo"
 
 // Find the Generate button and add the listener
 const goButton = document.getElementById("generate");
@@ -41,10 +53,12 @@ function clickRespond() {
     // (zip takes precendence if both were entered)
     let url;
     let bitURL;
+    let pixaURL;
   
     if (city) {
         url = API_ROOT_CITY + city + API_ROOT_PARAMS + API_KEY;
-        bitURL = API_ROOT_BIT + API_BIT_PARAMS + city + API_BIT_KEY + BIT_KEY;
+        bitURL = API_ROOT_BIT + API_BIT_PARAMS + city + API_BIT_KEY;
+        pixaURL = API_ROOT_PIXA + API_PIXA_KEY + API_PIXA_PARAMS + API_PIXA_IMAGE;
     }
 
     // Call the API
@@ -74,17 +88,37 @@ function clickRespond() {
         })
 
         getWeather(bitURL)
-        .then(function (weatherData) {
-            console.log(weatherData)
+        .then(function (weatherBit) {
+            console.log(weatherBit)
             const errorMessage = document.getElementById('error');
-            if (weatherData.cod == "200") {
+            if (weatherBit.cod == "200") {
                 errorMessage.classList.add('hide');
-                const icon = weatherData.data[0].weather.icon;
-                const description = weatherData.data[0].weather.description
+                const icon = weatherBit.data[0].weather.icon;
+                const description = weatherBit.data[0].weather.description
                 const date = dateTime();
-                const highTemp = weatherData.data[0].high_temp;
-                const lowTemp = weatherData.data[0].low_temp
+                const highTemp = weatherBit.data[0].high_temp;
+                const lowTemp = weatherBit.data[0].low_temp
                 postJournal('/add', { icon, description, date, highTemp, lowTemp  });
+
+                // Calls to update the site with latest entry
+                updateUI(degreeSystem);
+
+            } else {
+                console.log('Bad data entered');
+                errorMessage.classList.remove('hide');
+                return;
+            }
+        })
+
+        getPix(pixaURL)
+        .then(function (pixaBay) {
+            console.log(pixaBay)
+            const errorMessage = document.getElementById('error');
+            if (pixaBay.cod == "200") {
+                errorMessage.classList.add('hide');
+                const image = pixaBay.hits[0].webformatURL;
+                
+                postJournal('/add', { image  });
 
                 // Calls to update the site with latest entry
                 updateUI(degreeSystem);
@@ -105,10 +139,18 @@ async function getGeo(url) {
     return geoNames;
 }
 
+// returns weatherBit JSON object
 async function getWeather(bitURL) {
     const response = await fetch(bitURL);
     const weatherBit = await response.json();
     return weatherBit;
+}
+
+// returns pixaBay JSON object
+async function getPix(pixaURL) {
+    const response = await fetch(pixaURL);
+    const pixaBay = await response.json();
+    return pixaBay;
 }
 
 // POSTs the journal data (icon, date/time, temperature, feelings)
