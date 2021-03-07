@@ -30,10 +30,6 @@ const API_PIXA_PARAMS = "&q="
 // Type of image from pixabay
 const API_PIXA_IMAGE = "&image_type=photo"
 
-// Find the Generate button and add the listener
-const goButton = document.getElementById("generate");
-goButton.addEventListener("click", clickRespond);
-
 // Main function of the program
 // Grabs the user"s input, then forms URL, calls API, POSTS and updates UI
 function clickRespond() {
@@ -92,7 +88,8 @@ function clickRespond() {
                 errorMessage.classList.add('hide');
                 const icon = weatherBit.data[0].weather.icon;
                 const description = weatherBit.data[0].weather.description
-                const date = dateTime();
+                const newDate = dateTime();
+                const date = newDate;
                 const highTemp = weatherBit.data[0].high_temp;
                 const lowTemp = weatherBit.data[0].low_temp
                 postJournal('/add', { icon, description, date, highTemp, lowTemp  });
