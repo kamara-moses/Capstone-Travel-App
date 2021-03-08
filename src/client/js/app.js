@@ -170,9 +170,9 @@ async function updateUI(degreeSystem) {
     const latestEntry = await response.json();
     document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`
     document.getElementById("image").innerHTML = `${latestEntry.image}`
-    document.getElementById("icon").innerHTML = `<img class="icon" ${latestEntry.icon}>`
+    document.getElementById("icon").innerHTML = `<img class="icons" src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Weather Icon">`
     document.getElementById("date").innerHTML = `Date: ${latestEntry.date}`;
-    document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.description}\xB0${degreeSystem}`;
+    document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.weatherBit}`;
     document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.highTemp}\xB0${degreeSystem}`;
     document.getElementById("lowTemp").innerHTML = `Low Temp: ${latestEntry.lowTemp}\xB0${degreeSystem}`;
     document.getElementById("journal").classList.remove("hide");
