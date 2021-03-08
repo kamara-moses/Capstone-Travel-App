@@ -169,7 +169,8 @@ async function updateUI(degreeSystem) {
     const response = await fetch("/retrieve");
     const latestEntry = await response.json();
     document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`
-    document.getElementById("icon").innerHTML = `<img class="icon" ${latestEntry.image}>`
+    document.getElementById("image").innerHTML = `${latestEntry.image}`
+    document.getElementById("icon").innerHTML = `<img class="icon" ${latestEntry.icon}>`
     document.getElementById("date").innerHTML = `Date: ${latestEntry.date}`;
     document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.description}\xB0${degreeSystem}`;
     document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.highTemp}\xB0${degreeSystem}`;
