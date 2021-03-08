@@ -62,12 +62,12 @@ function clickRespond() {
     
 
         // Prepares data for POST, calls the POST
-        .then(function (geoNames) {
-            console.log(geoNames)
+        .then(function (response) { // CHANGE: call it response
+            console.log(response)
             const errorMessage = document.getElementById("error");
-            if (geoNames.cod == "200") {
+            if (response.status == "200") { // CHANGE: check the status
                 errorMessage.classList.add("hide");
-                const city = geoNames.geonames[0].name;
+                const city = response.geoNames.geonames[0].name; // Change
                 postJournal("/add", { city });
 
                 // Calls to update the site with latest entry
@@ -81,17 +81,17 @@ function clickRespond() {
         })
 
         getWeather(bitURL)
-        .then(function (weatherBit) {
-            console.log(weatherBit)
+        .then(function (response) {
+            console.log(response)
             const errorMessage = document.getElementById('error');
-            if (weatherBit.cod == "200") {
+            if (response.status == "200") {
                 errorMessage.classList.add('hide');
-                const icon = weatherBit.data[0].weather.icon;
-                const description = weatherBit.data[0].weather.description
+                const icon = response.weatherBit.data[0].weather.icon;
+                const description = response.weatherBit.data[0].weather.description
                 const newDate = dateTime();
                 const date = newDate;
-                const highTemp = weatherBit.data[0].high_temp;
-                const lowTemp = weatherBit.data[0].low_temp
+                const highTemp = response.weatherBit.data[0].high_temp;
+                const lowTemp = response.weatherBit.data[0].low_temp
                 postJournal('/add', { icon, description, date, highTemp, lowTemp  });
 
                 // Calls to update the site with latest entry
@@ -105,12 +105,12 @@ function clickRespond() {
         })
 
         getPix(pixaURL)
-        .then(function (pixaBay) {
-            console.log(pixaBay)
+        .then(function (response) {
+            console.log(response)
             const errorMessage = document.getElementById('error');
-            if (pixaBay.cod == "200") {
+            if (response.status == "200") {
                 errorMessage.classList.add('hide');
-                const image = pixaBay.hits[0].webformatURL;
+                const image = response.pixaBay.hits[0].webformatURL;
                 
                 postJournal('/add', { image  });
 
@@ -129,22 +129,25 @@ function clickRespond() {
 // returns geoNames JSON object
 async function getGeo(url) {
     const response = await fetch(url);
+    const status = response.status; // CHANGE: get API call status
     const geoNames = await response.json();
-    return geoNames;
+    return {geoNames, status}; // CHANGE: send it along with the data
 }
 
 // returns weatherBit JSON object
 async function getWeather(bitURL) {
     const response = await fetch(bitURL);
+    const status = response.status;
     const weatherBit = await response.json();
-    return weatherBit;
+    return {weatherBit, status};
 }
 
 // returns pixaBay JSON object
 async function getPix(pixaURL) {
     const response = await fetch(pixaURL);
+    const status = response.status;
     const pixaBay = await response.json();
-    return pixaBay;
+    return {pixaBay, status};
 }
 
 // POSTs the journal data (icon, date/time, temperature, feelings)
@@ -165,7 +168,7 @@ async function postJournal(url, data) {
 async function updateUI(degreeSystem) {
     const response = await fetch("/retrieve");
     const latestEntry = await response.json();
-    document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}>`
+    document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`
     document.getElementById("icon").innerHTML = `<img class="icon" ${latestEntry.image}>`
     document.getElementById("date").innerHTML = `Date: ${latestEntry.date}`;
     document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.description}\xB0${degreeSystem}`;
