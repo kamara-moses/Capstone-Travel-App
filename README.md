@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description:
-A weather journal application that accepts users input and display weather information from the openweathermap through making API calls for the data.
+A travel application that takes the users input and displays weather information for their destination of choice. The application implements a countdown to let the user know how many days they have left until their trip starts.
 
 ## Technologies:
 - Node.js
@@ -11,6 +11,13 @@ A weather journal application that accepts users input and display weather infor
 - Body-Parser
 - API
 - JavaScript
+- Geonames
+- Weatherbit
+- Pixabay
+- Node-Fetch
+- Webpack
+- Sass
+- Loaders
 
 
 ## Table of Contents
@@ -29,15 +36,23 @@ A weather journal application that accepts users input and display weather infor
 ## Installation
 Before installing this application on your local computer, ensure that you have Node installed. This application works in Node. You can go to the following website to download Node: <a href='https://nodejs.org/en/'>Node</a>
 
-    1. Clone the Git repository
+    1. Click the green code button.
+    2. Copy the repository url
+    3. On your terminal navigate to where you want to clone the repo.
+    4. Clone the Git repository into that directory by typing into the terminal
         $ git clone <repo>
-    2. Navigate to the directory and install the dependencies
-        $ npm init to create package.json package
-        $ npm install express cors body-parser
-    3.  To run it locally, type node server in terminal
+    5. Navigate to the directory and open the directory in the code editor of your choice.
+    6. Install all the dependencies for the application by typing.
+        $ npm i - installs all dependencies in the directory
 
 ## Usage
-Once all dependencies have been installed - run node server.js to launch the application. Go to localhost + the port number.
+Once all dependencies are installed. You can run the application by doing the following:
+    1. NPM run build-prod - this build the dist folder that the application is rendered from by webpack
+    2. NPM run start - this starts the express server
+    3. NPM run build-dev - launch the webpack-dev-server
+    4. http://localhost:8080 is the webpack-dev-server and http://localhost:8000 is the express server
+    5. The webpack-dev-server and the express server needs to be running at the same time to communicate with each other.
+
 
 ## Contributors
 This application is open to anyone who wants to contribute or enhance the application. If you would like to contribute please reach out to me on Github or email.
@@ -50,7 +65,7 @@ There are no automatic test designed for this application. I ran manual test to 
 If you would like to design an automatic test for this application feel free to reach me on GitHub or Email
 
 ## Challenges
-The videos in the class were very informational and easy to follow. There were no challenges in this application build
+The challenge I had with this build was integrating three different API. I had to figure out the best way to integrate which I had to do a lot of research to understand how to do it.
 
 ## Questions
 If you have questions about this repository? Please contact me at [kamara.moses@yahoo.com](mailto:kamara.moses@yahoo.com). View more of my work in GitHub at [kamara-moses](https://github.com/kamara-moses).
