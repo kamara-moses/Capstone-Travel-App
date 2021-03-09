@@ -47,6 +47,7 @@ Before installing this application on your local computer, ensure that you have 
 
 ## Usage
 Once all dependencies are installed. You can run the application by doing the following:
+
     1. NPM run build-prod - this build the dist folder that the application is rendered from by webpack
     2. NPM run start - this starts the express server
     3. NPM run build-dev - launch the webpack-dev-server
