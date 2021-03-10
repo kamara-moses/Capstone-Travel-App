@@ -43,6 +43,9 @@ app.post('/add', postData);
 
 function postData(request, response) {
     projectData = request.body;
+    // projectData['icon'] = request.body;
+    // // projectData['highTemp'] = projectData.response;
+    // // projectData['temp'] = projectData.lowTemp;
     response.send({ message: "Post received" })
     console.log(projectData)
 }

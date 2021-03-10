@@ -92,7 +92,7 @@ function clickRespond() {
                 const date = newDate;
                 const highTemp = response.weatherBit.data[0].high_temp;
                 const lowTemp = response.weatherBit.data[0].low_temp
-                postJournal('/add', { icon, description, date, highTemp, lowTemp  });
+                postJournal('/add', { icon: icon, description: description, date, highTemp: highTemp, lowTemp: lowTemp  });
 
                 // Calls to update the site with latest entry
                 updateUI(degreeSystem);
@@ -167,13 +167,15 @@ async function postJournal(url, data) {
 // Shows the card if it"s hidden
 async function updateUI(degreeSystem) {
     const response = await fetch("/retrieve");
+    console.log(response)
     const latestEntry = await response.json();
-    document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`
-    document.getElementById("image").innerHTML = `${latestEntry.image}`
-    document.getElementById("icon").innerHTML = `<img class="icons" src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Weather Icon">`
+    console.log(latestEntry)
+    document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`;
+    document.getElementById("image").innerHTML = `${latestEntry.image}`;
+    document.getElementById("icon").innerHTML = `${latestEntry.icon}`;
     document.getElementById("date").innerHTML = `Date: ${latestEntry.date}`;
     document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.weatherBit}`;
-    document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.highTemp}\xB0${degreeSystem}`;
+    document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.high_temp}\xB0${degreeSystem}`;
     document.getElementById("lowTemp").innerHTML = `Low Temp: ${latestEntry.lowTemp}\xB0${degreeSystem}`;
     document.getElementById("journal").classList.remove("hide");
 }
