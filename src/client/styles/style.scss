@@ -108,9 +108,6 @@ input[type='date'] {
     }
 }
 
-section.results {
-    margin: 0 auto;
-}
 
 .hide {
     display: none;
@@ -124,7 +121,19 @@ section.results {
 
 #entryHolder {
     font-size: large;
-    width: 400px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px black;
+}
+
+#entryContainer {
+    font-size: large;
+    width: 90%;
+    margin: 0 auto;
     padding: 20px;
     background-color: white;
     border: 2px solid black;

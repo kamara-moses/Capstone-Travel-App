@@ -36,14 +36,14 @@ function clickRespond() {
 
    // Grab user"s input
     const cityInput = document.getElementById("city");
-    const dateInput = document.getElementById("depart");
+    
 
     let degreeSystem;
    
 
     // Read values of zip and city
     const city = cityInput.value;
-    const date = dateInput.value;
+    
 
     // Form URL based on zip or city search
     // (zip takes precendence if both were entered)
@@ -83,23 +83,23 @@ function clickRespond() {
         getWeather(bitURL)
         .then(function (response) {
             console.log(response)
-            const errorMessage = document.getElementById('error');
+            const errorMessage = document.getElementById("error");
             if (response.status == "200") {
-                errorMessage.classList.add('hide');
+                errorMessage.classList.add("hide");
                 const icon = response.weatherBit.data[0].weather.icon;
                 const description = response.weatherBit.data[0].weather.description
                 const newDate = dateTime();
                 const date = newDate;
                 const highTemp = response.weatherBit.data[0].high_temp;
                 const lowTemp = response.weatherBit.data[0].low_temp
-                postJournal('/add', { icon: icon, description: description, date, highTemp: highTemp, lowTemp: lowTemp  });
+                postJournal("/add", { icon: icon, description: description, date: date, highTemp: highTemp, lowTemp: lowTemp  });
 
                 // Calls to update the site with latest entry
                 updateUI(degreeSystem);
 
             } else {
-                console.log('Bad data entered');
-                errorMessage.classList.remove('hide');
+                console.log("Bad data entered");
+                errorMessage.classList.remove("hide");
                 return;
             }
         })
@@ -107,19 +107,19 @@ function clickRespond() {
         getPix(pixaURL)
         .then(function (response) {
             console.log(response)
-            const errorMessage = document.getElementById('error');
+            const errorMessage = document.getElementById("error");
             if (response.status == "200") {
-                errorMessage.classList.add('hide');
+                errorMessage.classList.add("hide");
                 const image = response.pixaBay.hits[0].webformatURL;
                 
-                postJournal('/add', { image  });
+                postJournal("/add", { image  });
 
                 // Calls to update the site with latest entry
                 updateUI(degreeSystem);
 
             } else {
-                console.log('Bad data entered');
-                errorMessage.classList.remove('hide');
+                console.log("Bad data entered");
+                errorMessage.classList.remove("hide");
                 return;
             }
         })
@@ -173,7 +173,7 @@ async function updateUI(degreeSystem) {
     document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`;
     document.getElementById("image").innerHTML = `${latestEntry.image}`;
     document.getElementById("icon").innerHTML = `${latestEntry.icon}`;
-    document.getElementById("date").innerHTML = `Date: ${latestEntry.date}`;
+    document.getElementById("date").innerHTML = `Your trips is in: ${latestEntry.date} days`;
     document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.weatherBit}`;
     document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.high_temp}\xB0${degreeSystem}`;
     document.getElementById("lowTemp").innerHTML = `Low Temp: ${latestEntry.lowTemp}\xB0${degreeSystem}`;
@@ -183,6 +183,9 @@ async function updateUI(degreeSystem) {
 // Calculate the user"s date and time
 // returns date and time in string
 function dateTime() {
+    const dateInput = document.getElementById("depart");
+    const date = dateInput.value;
+
     const today = new Date();
     const depart = new Date(date)
     
