@@ -37,8 +37,6 @@ function clickRespond() {
    // Grab user"s input
     const cityInput = document.getElementById("city");
     
-
-    let degreeSystem;
    
 
     // Read values of zip and city
@@ -68,10 +66,17 @@ function clickRespond() {
             if (response.status == "200") { // CHANGE: check the status
                 errorMessage.classList.add("hide");
                 const city = response.geoNames.geonames[0].name; // Change
-                postJournal("/add", { city });
+                const image = response.pixaBay.hits[0].webformatURL;
+                const icon = response.weatherBit.data[0].weather.icon;
+                const description = response.weatherBit.data[0].weather.description
+                const newDate = dateTime();
+                const date = newDate;
+                const highTemp = response.weatherBit.data[0].high_temp;
+                const lowTemp = response.weatherBit.data[0].low_temp;
+                postJournal("/add", { city, image, icon, description, date, highTemp, lowTemp });
 
                 // Calls to update the site with latest entry
-                updateUI(degreeSystem);
+                updateUI();
 
             } else {
                 console.log("Bad data entered");
@@ -95,7 +100,7 @@ function clickRespond() {
                 postJournal("/add", { icon: icon, description: description, date: date, highTemp: highTemp, lowTemp: lowTemp  });
 
                 // Calls to update the site with latest entry
-                updateUI(degreeSystem);
+                updateUI();
 
             } else {
                 console.log("Bad data entered");
@@ -112,10 +117,10 @@ function clickRespond() {
                 errorMessage.classList.add("hide");
                 const image = response.pixaBay.hits[0].webformatURL;
                 
-                postJournal("/add", { image  });
+                postJournal("/add", { image: image  });
 
                 // Calls to update the site with latest entry
-                updateUI(degreeSystem);
+                updateUI();
 
             } else {
                 console.log("Bad data entered");
@@ -156,27 +161,28 @@ async function postJournal(url, data) {
         method: "POST",
         credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
-        // Body data type must match "Content-Type" header        
+        // Body data type must match "Content-Type" header 
         body: JSON.stringify(data)
     });
+    console.log(data)
 }
 
 
 // Updates the website"s latest entry card
 // Includes weather icon, date, temperature, feelings
 // Shows the card if it"s hidden
-async function updateUI(degreeSystem) {
+async function updateUI() {
     const response = await fetch("/retrieve");
     console.log(response)
     const latestEntry = await response.json();
     console.log(latestEntry)
     document.getElementById("name").innerHTML = `Destination City: ${latestEntry.city}`;
-    document.getElementById("image").innerHTML = `${latestEntry.image}`;
-    document.getElementById("icon").innerHTML = `${latestEntry.icon}`;
+    document.getElementById("image").innerHTML = `<img src="${latestEntry.image}">`;
+    document.getElementById("icon").innerHTML = `<img src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Weather Icons">`;
     document.getElementById("date").innerHTML = `Your trips is in: ${latestEntry.date} days`;
-    document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.weatherBit}`;
-    document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.high_temp}\xB0${degreeSystem}`;
-    document.getElementById("lowTemp").innerHTML = `Low Temp: ${latestEntry.lowTemp}\xB0${degreeSystem}`;
+    document.getElementById("description").innerHTML = `Typical weather is: ${latestEntry.description}`;
+    document.getElementById("highTemp").innerHTML = `High Temp: ${latestEntry.highTemp}\xB0`;
+    document.getElementById("lowTemp").innerHTML = `Low Temp: ${latestEntry.lowTemp}\xB0`;
     document.getElementById("journal").classList.remove("hide");
 }
 

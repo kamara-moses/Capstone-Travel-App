@@ -43,6 +43,8 @@ app.post("/add", postData);
 
 function postData(request, response) {
     projectData = request.body;
-    response.send({ message: "Post received" })
+    response.send({ 
+        message: "Post received"
+     })
     console.log(projectData)
 }
