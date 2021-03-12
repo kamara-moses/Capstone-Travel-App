@@ -8,23 +8,6 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   stats: "verbose",
-  devServer: {
-    hot: true,
-    contentBase: (__dirname, "dist"),
-    publicPath: "/",
-    proxy: {
-      "/retrieve": {
-        target: "http://localhost:8000",
-        secure: false,
-        changeOrigin: true,
-      },
-      "/add": {
-        target: "http://localhost:8000",
-        secure: false,
-        changeOrigin: true,
-      },
-    },
-  },
   module: {
     rules: [
       {
