@@ -23,18 +23,16 @@ const clickRespond = () => {
     getWeather(data).then(async (res) => {
       try {
         const latestEntry = await res.json();
-        const errorMessage = document.getElementById("error");
         if (latestEntry) {
-          errorMessage.classList.add("hide");
           document.getElementById(
             "name"
           ).innerHTML = `Your Destination is: ${city}`;
           document.getElementById(
             "pix"
-          ).innerHTML = `<img src=${latestEntry.image} height="350px" width="550px" alt="City Image">`;
+          ).innerHTML = `<img class="pix" src=${latestEntry.image}  alt="City Image">`;
           document.getElementById(
             "icon"
-          ).innerHTML = `<img src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Forecast Icons">`;
+          ).innerHTML = `<img class="icon" src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Forecast Icons">`;
           document.getElementById(
             "date"
           ).innerHTML = `Your trips is in: ${countdown} days`;

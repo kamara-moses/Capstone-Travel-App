@@ -46,16 +46,12 @@ app.post("/getWeather", projectData = (req, res) => {
       // getting latitude and longitude
       const lat = json.geonames[0].lat;
       const lng = json.geonames[0].lng;
-      console.log(geoNames);
-      console.log(lat);
-      console.log(lng);
 
       // Call to the weatherbit API
       const weatherBit = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lng}&key=cda6df51d9a24b8c9d54b830f4eadb51`;
       fetch(weatherBit)
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           const icon = json.data[0].weather.icon;
           const description = json.data[0].weather.description;
           const highTemp = json.data[0].high_temp;
@@ -66,7 +62,6 @@ app.post("/getWeather", projectData = (req, res) => {
           fetch(pixaBay)
             .then((res) => res.json())
             .then((json) => {
-              console.log(json);
               const image = json.hits[0].webformatURL;
               const pixObj = {
                 city: city,
@@ -77,7 +72,6 @@ app.post("/getWeather", projectData = (req, res) => {
                 image: image,
               };
               res.send(pixObj);
-              console.log(pixObj);
             });
         });
     });
