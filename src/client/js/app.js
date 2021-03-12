@@ -1,6 +1,6 @@
 // Main function of the program
 // Grabs the user"s input, then forms URL, calls API, POSTS and updates UI
-function clickRespond() {
+const clickRespond = () => {
   // Grab user"s input
   const cityInput = document.getElementById("city");
   const dateInput = document.getElementById("depart").value;
@@ -23,11 +23,15 @@ function clickRespond() {
     getWeather(data).then(async (res) => {
       try {
         const latestEntry = await res.json();
+        const errorMessage = document.getElementById("error");
         if (latestEntry) {
+          errorMessage.classList.add("hide");
           document.getElementById(
             "name"
           ).innerHTML = `Your Destination is: ${city}`;
-          document.getElementById("pix").innerHTML = `<img src=${latestEntry.image} height="350px" width="550px" alt="City Image">`;
+          document.getElementById(
+            "pix"
+          ).innerHTML = `<img src=${latestEntry.image} height="350px" width="550px" alt="City Image">`;
           document.getElementById(
             "icon"
           ).innerHTML = `<img src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Forecast Icons">`;
@@ -50,22 +54,21 @@ function clickRespond() {
       }
     });
   } else {
-    console.log("Bad data entered");
-    errorMessage.classList.remove("hide");
+    alert("Please enter city and date!")
   }
-}
+};
 
 const getWeather = async (data) => {
-    return await fetch(`http://localhost:8000/getWeather`, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'same-origin',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  }
+  return await fetch(`http://localhost:8000/getWeather`, {
+    method: "POST",
+    mode: "cors",
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};
 
 export { clickRespond };
