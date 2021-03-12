@@ -31,6 +31,9 @@ function listening() {
   console.log(`Server is running on port ${port}`);
 }
 
+// Asked a question on stackoverflow in regards to chaining.
+// I was giving an example of how to make chaining api calls
+// One user suggested moving the api call from the client side to the server side.
 app.post("/getWeather", projectData = (req, res) => {
   const { city } = req.body;
   // Call to the geonames API
