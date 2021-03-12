@@ -3,21 +3,27 @@
 const clickRespond = () => {
   // Grab user"s input
   const cityInput = document.getElementById("city");
-  const dateInput = document.getElementById("depart").value;
+  const startDate = document.getElementById("depart").value;
+  const endDate = document.getElementById("return").value;
 
   const city = cityInput.value;
 
   const today = new Date();
-  const depart = new Date(dateInput);
+  const depart = new Date(startDate);
+  const returnDate = new Date(endDate);
 
   const countdown = Math.round(
     (depart.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
   );
+  const duration = Math.ceil(
+    (returnDate.getTime() - depart.getTime()) / (1000 * 60 * 60 * 24)
+  );
 
-  if (city && depart) {
+  if (city && depart && returnDate) {
     const data = {
       city: city,
       depart: countdown,
+      returnDate: duration,
     };
 
     getWeather(data).then(async (res) => {
@@ -33,9 +39,13 @@ const clickRespond = () => {
           document.getElementById(
             "icon"
           ).innerHTML = `<img class="icon" src="https://www.weatherbit.io/static/img/icons/${latestEntry.icon}.png" alt="Forecast Icons">`;
+
           document.getElementById(
-            "date"
+            "daysUntil"
           ).innerHTML = `Your trips is in: ${countdown} days`;
+          document.getElementById(
+            "tripLength"
+          ).innerHTML = `You will be going for: ${duration} days`;
           document.getElementById(
             "description"
           ).innerHTML = `Typical Forecast is: ${latestEntry.description}`;
@@ -52,7 +62,7 @@ const clickRespond = () => {
       }
     });
   } else {
-    alert("Please enter city and date!")
+    alert("Please enter city and date!");
   }
 };
 

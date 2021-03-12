@@ -4,6 +4,8 @@
 ## Description:
 A travel application that takes the users input and displays weather information for their destination of choice. The application implements a countdown to let the user know how many days they have left until their trip starts.
 
+The application also lets the user know how long their trip is planned for. This is done by getting the depart that and return date from the user. The duration of the trip is calculate using Math.Ceil(subtracts the return date and depart date).
+
 ## Technologies:
 - Node.js
 - Express

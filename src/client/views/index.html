@@ -24,15 +24,28 @@
         </section>
         <section class="search">
           <div class="search-form">
-            <h2 id="error" class="hide">Bad data entered. Please try again.</h2>
-            <div class="input-fields">
-              <label for="city">Destination</label>
-              <input type="text" id="city" placeholder="Where are you going...">
-              <label for="depart">Depart</label>
-              <input type="date" id="depart">
+            <div class="row input-container">
+              <div class="col-xs-12">
+                <div class="styled-input wide">
+                  <label for="city">Destination</label>
+                  <input type="text" id="city" placeholder="Where are you going..." required />
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <label for="depart">Depart</label> 
+                  <input type="date" id="depart" required />
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input" style="float:right;">
+                  <label for="return">Return</label> 
+                  <input type="date" id="return" required />
+                </div>
+              </div>
               <button class="btn" id="generate" type="submit">Submit</button>
-            </div>
           </div>
+        </div>
         </section>
         <section>
           <div id="journal" class="holder entry hide">
@@ -42,7 +55,8 @@
                 <div id="name"></div>
                 <div id="pix"></div>
                 <div id="icon"></div>
-                <div id="date"></div>
+                <div id="daysUntil"></div>
+                <div id="tripLength"></div>
                 <div id="description"></div>
                 <div id="highTemp"></div>
                 <div id="lowTemp"></div>
