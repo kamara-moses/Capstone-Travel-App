@@ -10,7 +10,7 @@ body {
 #app {
     display: flex;
     flex-direction: column;
-    font-family: 'Oswald', sans-serif;
+    font-family: "Oswald", sans-serif;
     background-color: hsl(210, 36%, 96%);
     min-height: 100vh
 }
@@ -55,8 +55,8 @@ section.search {
     padding: 0 30px;
 }
 
-input[type='text'],
-input[type='date'] {
+#city,
+#depart {
     width: 100%;
     max-width: 100%;
     font-size: 18px;
