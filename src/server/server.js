@@ -25,11 +25,13 @@ app.use(express.static("dist"));
 
 // Setup Server
 const port = 8000;
-const server = app.listen(port, listening);
+const server = app.listen(port, function listening() {
+    console.log(`Server is running on port ${port}`);
+  });
 
-function listening() {
-  console.log(`Server is running on port ${port}`);
-}
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html')
+})
 
 // Asked a question on stackoverflow in regards to chaining.
 // I was giving an example of how to make chaining api calls
